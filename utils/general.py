@@ -1,7 +1,5 @@
-# YOLOv3 🚀 by Ultralytics, GPL-3.0 license
-"""
-General utils
-"""
+# coding=utf-8
+# YOLOv3 by Ultralytics, GPL-3.0 license
 
 import contextlib
 import glob
@@ -394,7 +392,7 @@ def check_dataset(data, autodownload=True):
             if s and autodownload:  # download script
                 root = path.parent if 'path' in data else '..'  # unzip directory i.e. '../'
                 if s.startswith('http'):  # URL
-                    f = 'coco128.zip'  # filename
+                    f = Path(s).name  # filename
                     print(f'Downloading {s} to {f}...')
                     torch.hub.download_url_to_file(s, f)
                     Path(root).mkdir(parents=True, exist_ok=True)  # create root
