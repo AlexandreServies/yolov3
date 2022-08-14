@@ -28,7 +28,6 @@ import pkg_resources as pkg
 import torch
 import torchvision
 import yaml
-import re
 
 from utils.downloads import gsutil_getsize
 from utils.metrics import box_iou, fitness
@@ -395,7 +394,7 @@ def check_dataset(data, autodownload=True):
             if s and autodownload:  # download script
                 root = path.parent if 'path' in data else '..'  # unzip directory i.e. '../'
                 if s.startswith('http'):  # URL
-                    f = path.name + '.zip'  # filename
+                    f = Path(s).name  # filename
                     print(f'Downloading {s} to {f}...')
                     torch.hub.download_url_to_file(s, f)
                     Path(root).mkdir(parents=True, exist_ok=True)  # create root
