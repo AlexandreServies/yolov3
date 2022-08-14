@@ -393,7 +393,7 @@ def check_dataset(data, autodownload=True):
             print('\nWARNING: Dataset not found, nonexistent paths: %s' % [str(x) for x in val if not x.exists()])
             if s and autodownload:  # download script
                 root = path.parent if 'path' in data else '..'  # unzip directory i.e. '../'
-                if s.startswith('http') and s.endswith('.zip'):  # URL
+                if s.startswith('http'):  # URL
                     f = Path(s).name  # filename
                     print(f'Downloading {s} to {f}...')
                     torch.hub.download_url_to_file(s, f)
